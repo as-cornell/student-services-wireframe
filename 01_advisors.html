@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Graduation</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Advisors</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
@@ -124,6 +124,11 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;f
 .activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
 .info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
 .info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+.advisor-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:8px}
+.advisor-card:hover{border-color:#111}
+.advisor-name{font-size:13px;font-weight:700;color:#111;margin-bottom:2px}
+.advisor-role{font-size:11px;color:#555;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.advisor-desc{font-size:12px;color:#444;line-height:1.5}
 </style></head><body>
 <div class="topbar">
   <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
@@ -140,14 +145,15 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;f
   <div class="left-col"><div class="left-sticky">
     <a class="left-label-link" href="00_student_services.html">Student Services</a>
     <a class="left-group-link" href="00_advising.html">Academic Advising</a>
-    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
-    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
-    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
-    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
-    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
-    <a class="left-link active" href="06_graduation.html">Graduation</a>
-    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
-    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-link" href="02_orientation.html">New Student Orientation</a>
+    <a class="left-link active" href="01_advisors.html">Advisors</a>
+    <a class="left-link" href="03_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="04_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="05_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="06_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="07_graduation.html">Graduation</a>
+    <a class="left-link" href="08_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="09_study_abroad.html">Study Abroad</a>
     <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
     <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
     <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
@@ -161,121 +167,120 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;f
 
   <div class="main-col" id="mainCol">
 <div class="eyebrow"><span class="eyebrow-label">Academic Advising</span><div class="eyebrow-rule"></div></div>
-    <h1 class="page-title">Graduation</h1>
-    <p class="page-subtitle">Everything you need to apply to graduate, understand honors, and get your diploma.</p>
-    <div class="cta-banner">
-      <div class="cta-banner-text">Questions about your graduation application? Contact the A&amp;S Registrar's Office.</div>
-      <span class="cta-banner-btn">Schedule an Appointment</span>
+    <h1 class="page-title">Advisors</h1>
+    <p class="page-subtitle">Every A&amp;S student has access to several kinds of advisors, each supporting a different part of your academic path. Start with your advising dean if you're not sure who to ask.</p>
+
+    <!-- ADVISOR TYPES -->
+    <div class="section" id="sec-types"><span class="section-anchor" id="types"></span>
+      <h2 class="section-heading">Types of Advisors</h2>
+      <p class="body-text">The College of Arts &amp; Sciences supports students through four kinds of advisors, each with a distinct role.</p>
+
+      <div class="advisor-card">
+        <div class="advisor-name">Advising Deans</div>
+        <div class="advisor-role">College of Arts &amp; Sciences</div>
+        <div class="advisor-desc">Help you explore academic resources, understand college and university requirements, and think through the curriculum. Your first stop for general academic planning, support resources, or working through a challenge.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Faculty Advisors</div>
+        <div class="advisor-role">Assigned at major declaration</div>
+        <div class="advisor-desc">Your primary contact for major requirements and course planning within your major. Find your assigned faculty advisor in Student Center under "program advisor."</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Directors of Undergraduate Studies (DUS)</div>
+        <div class="advisor-role">By department</div>
+        <div class="advisor-desc">Each department's DUS helps students plan a path toward a specific major, including course sequencing and departmental requirements.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Office of Undergraduate Biology (OUB)</div>
+        <div class="advisor-role">Biology majors — A&amp;S and CALS</div>
+        <div class="advisor-desc">Advises biology majors across both the College of Arts &amp; Sciences and CALS on academics and research opportunities.</div>
+      </div>
+
+      <div class="cta-row"><span class="cta-btn secondary">Find Your Program Advisor (Student Center)</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- MEET YOUR ADVISING DEANS -->
+    <div class="section" id="sec-deans"><span class="section-anchor" id="deans"></span>
+      <h2 class="section-heading">Meet Your Advising Deans</h2>
+      <p class="body-text">Ten advising deans support A&amp;S students, several with specialized responsibilities in addition to their general advising caseload.</p>
+
+      <div class="advisor-card">
+        <div class="advisor-name">Ray Kim</div>
+        <div class="advisor-role">Director of Advising</div>
+        <div class="advisor-desc">Oversees advising services for the college and the AS 1102 New Student Seminar.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Catherine Ramirez Foss</div>
+        <div class="advisor-role">Deputy Director</div>
+        <div class="advisor-desc">Liaison to Student Disability Services.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Lammi Adem</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">Manages HEOP, the Posse Program, and PSSP.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Nora Bayly</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Meg Elliott</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Brian Kane</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Peggy Parmenter</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Monique Staats</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Aoise Stratford</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+      <div class="advisor-card">
+        <div class="advisor-name">Paul Sulzer</div>
+        <div class="advisor-role">Advising Dean</div>
+        <div class="advisor-desc">General academic advising, with specialized responsibilities within the advising team.</div>
+      </div>
+
+      <div class="note-box">Specializations across the advising team include study abroad (assigned by last name), new student programming, undergraduate research funding, and specific fellowship programs. Your assigned advising dean can point you to the right specialist if your question falls outside their area.</div>
+      <div class="cta-row"><span class="cta-btn">Schedule an Appointment</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- CONTACT -->
+    <div class="section" id="sec-contact"><span class="section-anchor" id="contact"></span>
+      <h2 class="section-heading">Contact &amp; Location</h2>
+      <div class="contact-grid">
+        <div class="contact-item"><div class="contact-label">Location</div><div class="contact-val">160 Goldwin Smith Hall</div></div>
+        <div class="contact-item"><div class="contact-label">Email</div><div class="contact-val">as-studentservices@cornell.edu</div></div>
+        <div class="contact-item"><div class="contact-label">Phone</div><div class="contact-val">607-255-5004</div></div>
+      </div>
+      <div class="note-box">Most advising deans are based in Goldwin Smith Hall with some remote availability. Schedule through the appointment portal to see current walk-in hours and your assigned dean.</div>
+      <div class="cta-row"><span class="cta-btn">Schedule an Appointment</span></div>
     </div>
 
-    <!-- APPLYING -->
-    <div class="section" id="sec-applying"><span class="section-anchor" id="applying"></span>
-      <h2 class="section-heading">Applying to Graduate</h2>
-      <p class="body-text">Applications are submitted during your <strong>penultimate semester</strong> (the semester before your final one). Spring graduates apply in the preceding fall.</p>
-
-      <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Submit Part I — College Requirements</div><div class="step-desc">Complete the online form via data.arts. Includes your DUST report and a term-by-term course/credit chart. You'll answer questions about fulfillment of each college requirement. You'll receive an email confirmation.</div></div></div>
-        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Meet with your faculty advisor — Part II (Major Requirements)</div><div class="step-desc">Your advisor holds the link to Part II and will complete it with you. If you have multiple majors, you must meet with each major advisor and complete a Part II for each. Bring transcripts for any non-Cornell coursework (transfer credit, study abroad).</div></div></div>
-        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Confirm and follow up</div><div class="step-desc">After submitting, monitor your student record and contact the A&amp;S Registrar's Office (as-studentservices@cornell.edu / 607-255-5004) with any issues.</div></div></div>
-      </div>
-
-      <div class="note-box"><strong>Returning after a long absence?</strong> If you've been withdrawn or away for more than five years, email as-studentservices@cornell.edu to determine whether a return is possible.</div>
-      <div class="cta-row"><span class="cta-btn">Part I — Application to Graduate</span><span class="cta-btn secondary">Log In to DUST</span></div>
-    </div><div class="section-divider"></div>
-
-    <!-- EARLY -->
-    <div class="section" id="sec-early"><span class="section-anchor" id="early"></span>
-      <h2 class="section-heading">Graduating Early</h2>
-      <ul class="req-list">
-        <li>Possible if you can complete all graduation requirements in <strong>fewer than 8 semesters</strong></li>
-        <li>You must still satisfy the <strong>college residency requirement</strong></li>
-        <li>Earliest you can officially request early graduation: <strong>immediately after pre-enrollment</strong> for your anticipated final semester</li>
-        <li>Pre-enroll in your final required courses first, then notify A&amp;S Registrar at as-studentservices@cornell.edu with subject line: Early Graduation</li>
-        <li>After your graduation date is updated, complete <strong>Part I</strong> and have your advisor complete <strong>Part II</strong></li>
-      </ul>
-      <div class="cta-row"><span class="cta-btn secondary">Email Registrar — Early Graduation</span></div>
-    </div><div class="section-divider"></div>
-
-    <!-- LATE -->
-    <div class="section" id="sec-late"><span class="section-anchor" id="late"></span>
-      <h2 class="section-heading">Graduating Late (9th+ Term)</h2>
-      <p class="body-text">The BA is expected to be completed in 8 terms. Additional terms are only approved for <strong>emergent circumstances beyond the student's control</strong> — not for adding a major or minor.</p>
-
-      <div class="subsection-heading">Process for Requesting a 9th Term</div>
-      <div class="step-list">
-        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Faculty advisor updates Part II</div><div class="step-desc">Must detail remaining major requirements</div></div></div>
-        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Submit a study plan to your college advisor</div><div class="step-desc">List the specific courses that will meet degree requirements for one major</div></div></div>
-        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Email the A&amp;S Registrar's Office</div><div class="step-desc">Official request for 9th term — as-studentservices@cornell.edu</div></div></div>
-      </div>
-
-      <div class="subsection-heading">9th &amp; 10th Term Conditions</div>
-      <table class="elig-table">
-        <thead><tr><th></th><th>9th Term</th><th>10th Term</th></tr></thead>
-        <tbody>
-          <tr><td>Enrollment cap</td><td>18 credits</td><td>Only courses/credits required for one major</td></tr>
-          <tr><td>Tuition</td><td>May prorate if enrolling ≤9 credits</td><td>Must prorate tuition</td></tr>
-          <tr><td>Additional enrollments</td><td>Limited to required courses</td><td>Not allowed</td></tr>
-        </tbody>
-      </table>
-      <div class="note-box">Requests to add an additional major or minor will <strong>not</strong> be approved as a reason for a 9th or 10th term.</div>
-    </div><div class="section-divider"></div>
-
-    <!-- HONORS -->
-    <div class="section" id="sec-honors"><span class="section-anchor" id="honors"></span>
-      <h2 class="section-heading">Honors</h2>
-      <div class="alert-box"><strong>Policy change effective December 2026:</strong> Cornell will institute a standardized Latin Honors system based solely on final cumulative undergraduate GPA. Existing college-specific honors systems will be discontinued at end of Summer 2026. A&amp;S majors will transition to "Honors in [X]" designations (e.g., Honors in Chemistry).</div>
-
-      <div class="two-col">
-        <div class="col-card">
-          <div class="col-card-title">Bachelor of Arts with Honors (in a Major)</div>
-          <div class="col-card-desc">Almost all departments offer honors programs for exceptional major work and research. Requirements — including cum laude, magna cum laude, summa cum laude thresholds — are set by each department. Minors do not offer honors. Contact the DUS for your program.</div>
-        </div>
-        <div class="col-card">
-          <div class="col-card-title">Bachelor of Arts with Distinction in All Subjects</div>
-          <div class="col-card-desc">Requires: 60+ credits at Cornell; GPA in top 30% of class after 7th semester; no grade below C–; no failing grades; no frozen Incompletes; good academic standing for last 4 semesters.</div>
-        </div>
-      </div>
-      <div class="subsection-heading">Upcoming Latin Honors Scale (December 2026+)</div>
-      <table class="elig-table">
-        <thead><tr><th>Latin Honor</th><th>GPA Percentile (within college)</th></tr></thead>
-        <tbody>
-          <tr><td>Summa Cum Laude</td><td>Top 5%</td></tr>
-          <tr><td>Magna Cum Laude</td><td>Next 10% (top 6–15%)</td></tr>
-          <tr><td>Cum Laude</td><td>Next 15% (top 16–30%)</td></tr>
-        </tbody>
-      </table>
-      <div class="cta-row"><span class="cta-btn secondary">Directors of Undergraduate Studies</span><span class="cta-btn secondary">Graduation &amp; Academic Honors (University Catalog)</span></div>
-    </div><div class="section-divider"></div>
-
-    <!-- DIPLOMAS -->
-    <div class="section" id="sec-diplomas"><span class="section-anchor" id="diplomas"></span>
-      <h2 class="section-heading">Diplomas</h2>
-      <p class="body-text">Information on diploma ordering, delivery, and name changes is managed by the Cornell University Registrar.</p>
-      <div class="cta-row"><span class="cta-btn secondary">Cornell Registrar — Diploma Information</span></div>
-    </div><div class="section-divider"></div>
-
-    <!-- TRACKING -->
-    <div class="section" id="sec-tracking"><span class="section-anchor" id="tracking"></span>
-      <h2 class="section-heading">Track Your Degree Requirements</h2>
-      <ul class="req-list">
-        <li><strong>DUST report</strong> tracks university and college distribution requirements — updated after each semester's grades post</li>
-        <li>Does <strong>not</strong> track major/minor requirements — contact your faculty advisor for those</li>
-      </ul>
-      <div class="cta-row"><span class="cta-btn">Log In to DUST</span><span class="cta-btn secondary">Schedule with Your Advising Dean</span></div>
-  </div>
   </div>
   <div class="right-col"><div class="right-sticky">
     <div class="right-label">On this page</div>
-<a class="right-link" onclick="go('applying')">Applying to Graduate</a>
-    <a class="right-link" onclick="go('early')">Graduating Early</a>
-    <a class="right-link" onclick="go('late')">Graduating Late</a>
-    <a class="right-link" onclick="go('honors')">Honors</a>
-    <a class="right-link" onclick="go('diplomas')">Diplomas</a>
-    <a class="right-link" onclick="go('tracking')">Track Your Degree Requirements</a>
+    <a class="right-link" onclick="go('types')">Types of Advisors</a>
+    <a class="right-link" onclick="go('deans')">Meet Your Advising Deans</a>
+    <a class="right-link" onclick="go('contact')">Contact &amp; Location</a>
   </div></div>
 </div>
 <script>
-var secs=['applying','early','late','honors','diplomas','tracking']
+var secs=['types','deans','contact']
 function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
 function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
 window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
