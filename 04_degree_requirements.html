@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Degree Requirements</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link active" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Academic Advising</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Degree Requirements</h1>
+    <p class="page-subtitle">You have 8 semesters to meet these requirements — many will be satisfied naturally by your major and courses you'd take anyway.</p>
+    <div class="cta-banner">
+      <div class="cta-banner-text">Track your progress in your DUST report.</div>
+      <span class="cta-banner-btn">Log In to DUST</span>
+    </div>
+
+    <!-- REQUIREMENTS AT A GLANCE -->
+    <div class="section" id="sec-requirements"><span class="section-anchor" id="requirements"></span>
+      <h2 class="section-heading">Requirements at a Glance</h2>
+      <p class="body-text">Applies to students matriculating <strong>fall 2020 or later</strong>.</p>
+      <table class="elig-table">
+        <thead><tr><th>Requirement</th><th>What's Required</th><th>Transfer Note</th></tr></thead>
+        <tbody>
+          <tr><td><strong>First-Year Writing Seminars (FWS)</strong></td><td>Two seminars</td><td>Must complete ENGL 2880/2890 or FWS if not previously fulfilled</td></tr>
+          <tr><td><strong>Language</strong></td><td>Option 1: 1 intermediate course (2000+); Option 2: 11 credits in sequence</td><td>Transfer courses may apply — see Language section below</td></tr>
+          <tr><td><strong>Distribution Requirements</strong></td><td>Minimum 8 courses across all 10 categories</td><td>Transfer courses may fulfill categories</td></tr>
+          <tr><td><strong>Major</strong></td><td>Declare by start of junior year</td><td>Contact DUS on using prior coursework toward major</td></tr>
+          <tr><td><strong>Total Credits</strong></td><td>120 total; 100 must be College of Arts &amp; Sciences credits</td><td>Min. 60 Cornell credits required for transfers</td></tr>
+          <tr><td><strong>Residency</strong></td><td>8 semesters</td><td>4 semesters minimum in residence</td></tr>
+          <tr><td><strong>Physical Education &amp; Swim Test</strong></td><td>Required</td><td>Waived for transfers matriculating before Summer 2025</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">AP/IB credits count as <strong>Non-A&amp;S</strong> credits — they do not count toward the required 100 College of Arts &amp; Sciences credits.</div>
+      <div class="cta-row">
+        <span class="cta-btn secondary">University Catalog — Graduation Requirements</span>
+        <span class="cta-btn secondary">Schedule an Appointment</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- DISTRIBUTIONS -->
+    <div class="section" id="sec-distributions"><span class="section-anchor" id="distributions"></span>
+      <h2 class="section-heading">Distribution Requirements</h2>
+      <p class="body-text">Complete a minimum of <strong>8 courses</strong> to fulfill all <strong>10 categories</strong> below. Some courses satisfy more than one category. Distribution courses may be taken S/U unless they also fulfill a major or minor requirement.</p>
+      <div class="dist-grid">
+        <div class="dist-card"><div class="dist-code">ALC-AS</div><div class="dist-name">Arts, Literature &amp; Culture</div><div class="dist-desc">Analysis of artworks, literary texts, belief systems, and creative expression across cultures</div></div>
+        <div class="dist-card"><div class="dist-code">BIO-AS</div><div class="dist-name">Biological Sciences</div><div class="dist-desc">Life forms from molecular to ecosystem level; genetics, evolution, and ecology</div></div>
+        <div class="dist-card"><div class="dist-code">ETM-AS</div><div class="dist-name">Ethics &amp; the Mind</div><div class="dist-desc">Human mind, cognition, language, and ethical reasoning; uses philosophy, psychology, linguistics</div></div>
+        <div class="dist-card"><div class="dist-code">GLC-AS</div><div class="dist-name">Global Citizenship</div><div class="dist-desc">Global history, culture, politics, and social relations; intercultural engagement</div></div>
+        <div class="dist-card"><div class="dist-code">HST-AS</div><div class="dist-name">Historical Analysis</div><div class="dist-desc">Documentary, material, and oral evidence about past social phenomena and institutions</div></div>
+        <div class="dist-card"><div class="dist-code">PHS-AS</div><div class="dist-name">Physical Sciences</div><div class="dist-desc">Physics, chemistry, earth science, astronomy; scientific inquiry and the physical world</div></div>
+        <div class="dist-card"><div class="dist-code">SCD-AS</div><div class="dist-name">Social Difference</div><div class="dist-desc">Class, race, gender, sexuality, religion, ability — as social categories and their intersections</div></div>
+        <div class="dist-card"><div class="dist-code">SSC-AS</div><div class="dist-name">Social Sciences</div><div class="dist-desc">Social, economic, political, and psychological processes; quantitative and qualitative methods</div></div>
+        <div class="dist-card"><div class="dist-code">SDS-AS</div><div class="dist-name">Statistics &amp; Data Science</div><div class="dist-desc">Data literacy; statistical and computational techniques; analysis and interpretation</div></div>
+        <div class="dist-card"><div class="dist-code">SMR-AS</div><div class="dist-name">Symbolic &amp; Mathematical Reasoning</div><div class="dist-desc">Abstract logical reasoning, mathematical analysis, modeling, algorithms</div></div>
+      </div>
+      <div class="note-box">You can browse current courses for each distribution category on the Class Roster — filter by the category code (e.g., ALC-AS).</div>
+      <div class="cta-row"><span class="cta-btn secondary">Browse Courses by Distribution (Class Roster)</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- LANGUAGE -->
+    <div class="section" id="sec-language"><span class="section-anchor" id="language"></span>
+      <h2 class="section-heading">Language Requirement</h2>
+      <div class="subsection-heading">Two Ways to Fulfill It</div>
+      <table class="elig-table">
+        <thead><tr><th></th><th>What's Required</th><th>Class Roster Code</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Option 1</strong></td><td>Successfully complete one intermediate course (3+ credits) at the 2000 level or above at Cornell</td><td>FLOPI-AS</td></tr>
+          <tr><td><strong>Option 2</strong></td><td>Successfully complete at least 11 credits in a single language in the appropriate sequence at Cornell (2–3 semesters)</td><td>N/A</td></tr>
+        </tbody>
+      </table>
+      <div class="subsection-heading">Key Rules</div>
+      <ul class="req-list">
+        <li>Continuing a language from high school? You <strong>must</strong> take a placement test — enrollment in the wrong level is not permitted</li>
+        <li>Starting a new language? First courses are typically only offered in the <strong>fall semester</strong></li>
+        <li>AP/IB scores provide placement but do <strong>not</strong> fulfill the language requirement</li>
+        <li>Planning to study abroad in a non-English speaking country? Additional language study beyond intermediate may be required</li>
+        <li>Fluent in another language? Exemptions possible if you completed secondary school in that language, or can demonstrate near-native proficiency by exam</li>
+      </ul>
+      <div class="faq-item" style="margin-top:16px">
+        <div class="faq-q">I want to enroll in a lower level than I placed into. Is that okay?</div>
+        <div class="faq-a">No. Departments require students to enroll in the course indicated by their placement exam results.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I study more languages after fulfilling the requirement?</div>
+        <div class="faq-a">Yes — many students study multiple languages or continue beyond the requirement.</div>
+      </div>
+      <div class="cta-row">
+        <span class="cta-btn secondary">Language Placement Exams</span>
+        <span class="cta-btn secondary">Language Exemption Petition</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- TRACKING -->
+    <div class="section" id="sec-tracking"><span class="section-anchor" id="tracking"></span>
+      <h2 class="section-heading">Tracking Your Progress</h2>
+      <ul class="req-list">
+        <li><strong>DUST report</strong> tracks university and college distribution requirements — updated after each semester's grades are posted</li>
+        <li>DUST does <strong>not</strong> track major or minor requirements — contact your faculty advisor or DUS for those</li>
+        <li>Current-semester courses will <strong>not</strong> appear in DUST until final grades are posted</li>
+      </ul>
+      <div class="cta-row">
+        <span class="cta-btn">Log In to DUST</span>
+        <span class="cta-btn secondary">Schedule an Appointment with Your Advising Dean</span>
+      </div>
+  </div>
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+<a class="right-link" onclick="go('requirements')">Requirements at a Glance</a>
+    <a class="right-link" onclick="go('distributions')">Distribution Requirements</a>
+    <a class="right-link" onclick="go('language')">Language Requirement</a>
+    <a class="right-link" onclick="go('tracking')">Tracking Your Progress</a>
+  </div></div>
+</div>
+<script>
+var secs=['requirements','distributions','language','tracking']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>

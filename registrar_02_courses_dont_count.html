@@ -1,0 +1,361 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Courses That Won't Count</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link active" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Registrar Services — Policy</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Courses That Won't Count</h1>
+    <p class="page-subtitle">Non-academic-credit courses for 2025–2026. These do not count toward the 100 College of Arts &amp; Sciences or 120 total degree credits, but still appear on official transcripts and factor into GPA (if letter-graded).</p>
+
+    <!-- CATEGORIES -->
+    <div class="section" id="sec-overview"><span class="section-anchor" id="overview"></span>
+      <h2 class="section-heading">Categories</h2>
+      <div class="three-col">
+        <div class="cat-card"><div class="cat-title">Physical Education (PE)</div><div class="cat-desc">All PE courses, any department</div></div>
+        <div class="cat-card"><div class="cat-title">Courses numbered 1000–1099</div><div class="cat-desc">All courses in this number range, any department</div></div>
+        <div class="cat-card"><div class="cat-title">Courses numbered X4980</div><div class="cat-desc">All 4980 courses <em>except</em> 5 specific exceptions below</div></div>
+      </div>
+      <div class="subsection-heading">4980 Exceptions (These DO Count)</div>
+      <table class="elig-table">
+        <thead><tr><th>Dept</th><th>Course</th><th>Title</th></tr></thead>
+        <tbody>
+          <tr><td>CHEM</td><td>4980</td><td>Honors Seminar</td></tr>
+          <tr><td>HADM</td><td>4980</td><td>Independent Study</td></tr>
+          <tr><td>PUBPOL</td><td>4980</td><td>Senior Seminar</td></tr>
+          <tr><td>SOC</td><td>4980</td><td>Engaged Learning Capstone</td></tr>
+          <tr><td>STSCI</td><td>4980</td><td>Tutorial in Actuarial Statistics</td></tr>
+        </tbody>
+      </table>
+    </div><div class="section-divider"></div>
+
+    <!-- LOOKUP -->
+    <div class="section" id="sec-lookup"><span class="section-anchor" id="lookup"></span>
+      <h2 class="section-heading">Department &amp; Course Lookup</h2>
+      <p class="body-text">Beyond PE, the 1000–1099 range, and 4980 courses, the following specific department courses also do not count for A&amp;S academic credit — mostly internships, teaching assistantships, and skills-training courses.</p>
+
+      <div class="filter-bar">
+        <input class="filter-input" id="filterInput" type="text" placeholder="Filter by department, course number, or title (e.g. &quot;CS&quot;, &quot;4960&quot;, &quot;Internship&quot;)" onkeyup="filterTable()">
+        <span class="filter-count" id="filterCount">95 courses</span>
+      </div>
+
+      <div class="table-scroll">
+      <table class="elig-table" id="lookupTable">
+        <thead><tr><th>Dept</th><th>School</th><th>Course #</th><th>Title</th></tr></thead>
+        <tbody>
+          <tr><td>AEM/BU</td><td>AEM</td><td>2700</td><td>Management Communication</td></tr>
+          <tr><td>AEM/BU</td><td>AEM</td><td>2820</td><td>Intro to Database Management Systems</td></tr>
+          <tr><td>AEM/BU</td><td>AEM</td><td>4960</td><td>AEM Internship</td></tr>
+          <tr><td>AEM/BU</td><td>AEM</td><td>6980</td><td>Supervised Grad Teaching Exper</td></tr>
+          <tr><td>AIRS</td><td>AG</td><td>—</td><td>All Courses</td></tr>
+          <tr><td>ALS</td><td>AG</td><td>4960</td><td>Internship</td></tr>
+          <tr><td>ALS</td><td>AG</td><td>6015</td><td>Teaching in Higher Education</td></tr>
+          <tr><td>ALS</td><td>AG</td><td>6016</td><td>Assessment in Higher Education</td></tr>
+          <tr><td>ANSC</td><td>AG</td><td>4960</td><td>Internship in Animal Science</td></tr>
+          <tr><td>ART</td><td>AR</td><td>1909</td><td>Internship Practicum</td></tr>
+          <tr><td>BEE</td><td>AG</td><td>5980</td><td>Graduate Teaching</td></tr>
+          <tr><td>BIOMG</td><td>AG</td><td>4981</td><td>Teaching Experience in Principles of Biochemistry, Indv</td></tr>
+          <tr><td>BIOMG</td><td>AG</td><td>4982</td><td>Teaching Leadership in Principles of Biochemistry, Indv</td></tr>
+          <tr><td>BIOMG</td><td>AG</td><td>6980</td><td>MBG Grad TA Experience</td></tr>
+          <tr><td>BME</td><td>EN</td><td>4970</td><td>Undergraduate Teaching in BME</td></tr>
+          <tr><td>BME</td><td>EN</td><td>5940</td><td>Biomedical Engineering Internship</td></tr>
+          <tr><td>BME</td><td>EN</td><td>7030</td><td>Graduate Student Teaching</td></tr>
+          <tr><td>BTRY</td><td>AG</td><td>7980</td><td>Graduate Supervised Teaching</td></tr>
+          <tr><td>CEE</td><td>EN</td><td>4010</td><td>Undergrd Engr Teaching in CEE</td></tr>
+          <tr><td>CHEME</td><td>EN</td><td>3010</td><td>Career Perspectives</td></tr>
+          <tr><td>COMM</td><td>AG</td><td>4950</td><td>Communication Industries: NYComm</td></tr>
+          <tr><td>COMM</td><td>AG</td><td>4960</td><td>Communication Internship</td></tr>
+          <tr><td>COMM</td><td>AG</td><td>6940</td><td>GR Special Topics in COMM</td></tr>
+          <tr><td>CRP</td><td>AR</td><td>1106</td><td>Advising Seminar</td></tr>
+          <tr><td>CRP</td><td>AR</td><td>4940</td><td>URS Internship</td></tr>
+          <tr><td>CRP</td><td>AR</td><td>7940</td><td>Planning Internships</td></tr>
+          <tr><td>CS</td><td>EN</td><td>4090</td><td>Teaching Experience in Computer Science</td></tr>
+          <tr><td>CS</td><td>EN</td><td>5998</td><td>MEng Internship</td></tr>
+          <tr><td>DEA</td><td>HE</td><td>4030</td><td>Teaching Apprenticeship</td></tr>
+          <tr><td>EAS</td><td>EN</td><td>4960</td><td>Internship Experience</td></tr>
+          <tr><td>ECE</td><td>EN</td><td>4920</td><td>ECE Technical Writing</td></tr>
+          <tr><td>EDUC</td><td>AG</td><td>4940</td><td>Special Topics</td></tr>
+          <tr><td>EDUC</td><td>AG</td><td>4960</td><td>Undergraduate Internship in Education</td></tr>
+          <tr><td>EDUC</td><td>AG</td><td>4970</td><td>Individual Study in Education</td></tr>
+          <tr><td>ELSO</td><td>AS</td><td>—</td><td>All Courses</td></tr>
+          <tr><td>ENGRC</td><td>EN</td><td>3023</td><td>Communication Intensive Opportunity</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>1152</td><td>COMPASS</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>2350</td><td>Career Development in Engineering</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4400</td><td>Project Team Leadership</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4800</td><td>Eng LSC: Listening Skills</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4805</td><td>Eng LSC: Positive Team Culture</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4810</td><td>Eng LSC: Inclusive Teams</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4815</td><td>Eng LSC: Perf &amp; Accountability</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4820</td><td>Eng LSC: Difficult Conversations</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4825</td><td>Eng LSC: Managing Conflict</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4830</td><td>Eng LSC: Giving Feedback</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4835</td><td>Eng LSC: Receiving Feedback</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4840</td><td>Eng LSC: Effective Followership</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4845</td><td>Eng LSC: Leading from Strength</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>4990</td><td>Teaching in Engineering Leadership</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>5350</td><td>Career Development for Engineering</td></tr>
+          <tr><td>ENGRG</td><td>EN</td><td>6780</td><td>Teaching Seminar</td></tr>
+          <tr><td>ENTOM</td><td>AG</td><td>7090</td><td>Teaching Entomology</td></tr>
+          <tr><td>ENVS</td><td>AG</td><td>4960</td><td>E&amp;S Internship</td></tr>
+          <tr><td>FDSC</td><td>AG</td><td>4960</td><td>Internship in Food Science</td></tr>
+          <tr><td>FDSC</td><td>AG</td><td>6960</td><td>Internship in Food Science</td></tr>
+          <tr><td>FDSC</td><td>AG</td><td>6980</td><td>Graduate Teaching Experience</td></tr>
+          <tr><td>FSAD</td><td>HE</td><td>4030</td><td>Teaching Apprenticeship</td></tr>
+          <tr><td>GDEV</td><td>AG</td><td>3106</td><td>Professional Preparation</td></tr>
+          <tr><td>GDEV</td><td>AG</td><td>4940</td><td>Special Topics in GDEV</td></tr>
+          <tr><td>GDEV</td><td>AG</td><td>6980</td><td>Teaching Experience Global Development</td></tr>
+          <tr><td>GDEV</td><td>AG</td><td>7910</td><td>Teaching Experience</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>1650</td><td>Business Writing</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>1740</td><td>Business Computing</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>1910</td><td>Distinguished Lectures in Hospitality</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>2740</td><td>Business Computing</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>3135</td><td>Conversations with Entrepreneurs</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>3650</td><td>Persuasive Communication</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>3740</td><td>Fundamentals of Database Mgt</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>4760</td><td>Visual Basic for Applications</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>5760</td><td>Visual Basic for Applications</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>6135</td><td>Conversations with Entrepreneurs</td></tr>
+          <tr><td>HADM</td><td>HA</td><td>6740</td><td>Fundamentals of Database Management and Data Analysis</td></tr>
+          <tr><td>HD</td><td>HE</td><td>4030</td><td>Teaching Assistantship</td></tr>
+          <tr><td>HD</td><td>HE</td><td>7060</td><td>Supervised Teaching</td></tr>
+          <tr><td>HD</td><td>HE</td><td>8060</td><td>Teaching Practicum</td></tr>
+          <tr><td>HE</td><td>HE</td><td>1112</td><td>Academic Well-Being Seminar</td></tr>
+          <tr><td>HE</td><td>HE</td><td>1115</td><td>Critical Reading &amp; Thinking</td></tr>
+          <tr><td>HE</td><td>HE</td><td>1850</td><td>Introduction to Human Ecology</td></tr>
+          <tr><td>HE</td><td>HE</td><td>4030</td><td>Apprenticeship in Teaching</td></tr>
+          <tr><td>HE</td><td>HE</td><td>4050</td><td>Independent Community Engaged Learning</td></tr>
+          <tr><td>ILRGL</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>ILRHR</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>ILRHR</td><td>IL</td><td>7980</td><td>Internship</td></tr>
+          <tr><td>ILRID</td><td>IL</td><td>2660</td><td>Essential Desktop Applications</td></tr>
+          <tr><td>ILRID</td><td>IL</td><td>4699</td><td>Advanced Desktop Applications</td></tr>
+          <tr><td>ILRID</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>ILRID</td><td>IL</td><td>6990</td><td>Advanced Desktop Applications</td></tr>
+          <tr><td>ILRLE</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>ILROB</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>ILRST</td><td>IL</td><td>4970</td><td>Field Research</td></tr>
+          <tr><td>INFO</td><td>EN</td><td>4910</td><td>Teaching in Information Science</td></tr>
+          <tr><td>LA</td><td>AG</td><td>4940</td><td>Special Topics in Landscape Architecture</td></tr>
+          <tr><td>LA</td><td>AG</td><td>4960</td><td>Internship in LA</td></tr>
+          <tr><td>LA</td><td>AG</td><td>5980</td><td>Graduate Teaching</td></tr>
+          <tr><td>LA</td><td>AG</td><td>6940</td><td>Special Topics in Landscape Architecture</td></tr>
+          <tr><td>LAW</td><td>LA</td><td>6114</td><td>BR Ventures</td></tr>
+          <tr><td>LAW</td><td>LA</td><td>6861</td><td>Supervised Teaching</td></tr>
+          <tr><td>LAW</td><td>LA</td><td>6881</td><td>Supervised Teaching and Supervised Writing-Honors Program</td></tr>
+          <tr><td>MATH</td><td>AS</td><td>5080</td><td>Special Study for Teachers</td></tr>
+          <tr><td>MILS</td><td>OT</td><td>—</td><td>All Courses</td></tr>
+          <tr><td>MSE</td><td>EN</td><td>4950</td><td>Undergraduate Teaching Involvement</td></tr>
+          <tr><td>MSE</td><td>EN</td><td>5998</td><td>External Internship</td></tr>
+          <tr><td>NAVS</td><td>OT</td><td>—</td><td>All Courses (except cross-listed with an academic dept)</td></tr>
+          <tr><td>NBA</td><td>GM</td><td>5075</td><td>Big Red Ventures</td></tr>
+          <tr><td>NMI</td><td>GM</td><td>5080</td><td>Big Red Consulting</td></tr>
+          <tr><td>NS</td><td>HE</td><td>4020</td><td>Supervised Fieldwork</td></tr>
+          <tr><td>NS</td><td>HE</td><td>4030</td><td>Teaching Apprenticeship</td></tr>
+          <tr><td>NTRES</td><td>AG</td><td>4960</td><td>Internship in Natural Resources</td></tr>
+          <tr><td>ORIE</td><td>EN</td><td>4990</td><td>Teaching in ORIE</td></tr>
+          <tr><td>PE</td><td>—</td><td>—</td><td>All Courses</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>4484</td><td>Teaching and Learning Physics</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>4485</td><td>Teaching Experience I</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>4486</td><td>Teaching Experience II</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>4487</td><td>Teaching Experience III</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>4500</td><td>Cultivating Public Engagement in Physics</td></tr>
+          <tr><td>PHYS</td><td>AS</td><td>7684</td><td>Teaching and Learning Physics</td></tr>
+          <tr><td>PLSCI</td><td>AG</td><td>4960</td><td>Undergraduate Internship in Plant Science</td></tr>
+          <tr><td>PUBPOL</td><td>PP</td><td>1111</td><td>Building Success at Brooks</td></tr>
+          <tr><td>PUBPOL</td><td>PP</td><td>4030</td><td>Teaching Apprenticeship</td></tr>
+          <tr><td>PUBPOL</td><td>PP</td><td>5053</td><td>Academic Writing</td></tr>
+          <tr><td>PADM</td><td>HE</td><td>5920</td><td>Public Affairs Externships</td></tr>
+          <tr><td>STSCI</td><td>AS</td><td>4970</td><td>Undergraduate Supervised Teaching</td></tr>
+          <tr><td>UNIV</td><td>CU</td><td>3090</td><td>Academic Support–Adolescence and Emerging Adulthood</td></tr>
+          <tr><td>VIEN</td><td>AG</td><td>4960</td><td>Wine Industry Internship</td></tr>
+          <tr><td>VTMED</td><td>VM</td><td>5601</td><td>Community Practice Service</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="note-box">If you're unsure whether a specific course counts, contact your advising dean or the A&amp;S Registrar's Office before enrolling.</div>
+      <div class="cta-row"><span class="cta-btn secondary">Schedule with Your Advising Dean</span></div>
+    </div>
+
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+    <a class="right-link" onclick="go('overview')">Categories</a>
+    <a class="right-link" onclick="go('lookup')">Department &amp; Course Lookup</a>
+  </div></div>
+</div>
+<script>
+var secs=['overview','lookup']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+
+function filterTable(){
+  var q=document.getElementById('filterInput').value.toLowerCase()
+  var rows=document.querySelectorAll('#lookupTable tbody tr')
+  var count=0
+  rows.forEach(function(r){
+    var text=r.textContent.toLowerCase()
+    var match=text.indexOf(q)>-1
+    r.style.display=match?'':'none'
+    if(match)count++
+  })
+  document.getElementById('filterCount').textContent=count+' courses'
+}
+</script>
+</body></html>

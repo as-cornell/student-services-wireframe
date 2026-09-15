@@ -1,0 +1,336 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Study Abroad</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link active" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Academic Advising</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Study Abroad</h1>
+    <p class="page-subtitle">A&amp;S students study abroad to immerse in other cultures, develop language proficiency, and pursue unique academic opportunities. Most study abroad in their junior year or fall of senior year.</p>
+
+    <div class="info-banner">
+      <strong>Info Session — Planning for Study Abroad in Spring 2027</strong>
+      Wednesday, March 11, 5:00–6:00 p.m. · KG70 Klarman Hall (Rhodes-Rawlings Auditorium) · Session will not be recorded. If unable to attend, schedule with your A&amp;S study abroad advisor.
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section" id="sec-overview"><span class="section-anchor" id="overview"></span>
+      <h2 class="section-heading">Overview</h2>
+      <p class="body-text">With college permission, most A&amp;S students may study abroad for <strong>one or two fall or spring semesters</strong> on programs approved by the College of Arts &amp; Sciences. Short-term programs (winter, spring break, summer) may be pursued independently and are not subject to A&amp;S policies.</p>
+      <div class="cta-row"><span class="cta-btn secondary">Browse Approved Programs (Education Abroad)</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- ELIGIBILITY -->
+    <div class="section" id="sec-eligibility"><span class="section-anchor" id="eligibility"></span>
+      <h2 class="section-heading">Eligibility</h2>
+      <p class="body-text">All of the following must be met at the time of application <em>and</em> at departure:</p>
+      <table class="elig-table">
+        <thead><tr><th>Requirement</th><th>Details</th></tr></thead>
+        <tbody>
+          <tr><td>GPA</td><td><strong>3.0 or above</strong> (cumulative)</td></tr>
+          <tr><td>Academic standing</td><td>Good standing from application through departure</td></tr>
+          <tr><td>Class year while abroad</td><td>2nd-semester sophomore, junior, or 1st-semester senior</td></tr>
+          <tr><td>Incompletes</td><td>All "I" grades must be resolved before departure</td></tr>
+          <tr><td>College requirements</td><td>FWS and language requirements must be completed</td></tr>
+          <tr><td>Major</td><td>Admitted to a major (or eligible for admission) at time of application</td></tr>
+          <tr><td>Graduation plan</td><td>Reasonable plan to complete all degree requirements in 8 semesters</td></tr>
+          <tr><td>Timing</td><td>Must study abroad before 8th semester (or before final semester if graduating early)</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">Cannot study abroad: first-year students, students in their final semester, or students who do not meet all eligibility requirements above.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- LANGUAGE -->
+    <div class="section" id="sec-language"><span class="section-anchor" id="language"></span>
+      <h2 class="section-heading">Language Requirement (Spring 2026 and After)</h2>
+
+      <div class="subsection-heading">Prior to Departure</div>
+      <p class="body-text">If the language of your host country is offered at Cornell:</p>
+      <ul class="req-list">
+        <li>Complete whatever language preparation your <strong>program requires</strong> — highly regarded programs may require 4–5 semesters of preparation</li>
+        <li><strong>OR</strong> if no program language requirement, take a minimum of <strong>one Cornell course</strong> (for a letter grade) at whatever level you place into — you may not test out of this</li>
+      </ul>
+      <div class="note-box">You must complete both the A&amp;S general language requirement <em>and</em> any language requirement for your specific program. Many students use the same language for both.</div>
+
+      <div class="subsection-heading">While Abroad</div>
+      <p class="body-text">All students in a non-English speaking country must take <strong>at least one course in the host country language</strong> while abroad.</p>
+
+      <div class="note-box"><strong>Important:</strong> Study abroad courses cannot fulfill the A&amp;S language requirement — that must be done through Cornell courses.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- TIMELINE -->
+    <div class="section" id="sec-timeline"><span class="section-anchor" id="timeline"></span>
+      <h2 class="section-heading">Planning Timeline</h2>
+      <div class="timeline-row"><div class="timeline-label">Year 1</div><div class="timeline-content">Attend information sessions. Complete FWS, work toward language requirement. Begin exploring programs and research host country language requirements — start language coursework if needed.</div></div>
+      <div class="timeline-row"><div class="timeline-label">Year 2</div><div class="timeline-content">Complete language requirement, declare a major. Research programs in detail. Meet with Education Abroad and A&amp;S study abroad advisors.</div></div>
+      <div class="timeline-row"><div class="timeline-label">Application Deadlines</div><div class="timeline-content">Spring programs: apply May–September of prior year. Fall/year-long programs: apply February–March of prior year. <strong>Note: Oxford and Cambridge deadlines are very early.</strong></div></div>
+      <div class="cta-row"><span class="cta-btn secondary">Application Process &amp; Timeline (Education Abroad)</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- COURSE APPROVAL -->
+    <div class="section" id="sec-approval"><span class="section-anchor" id="approval"></span>
+      <h2 class="section-heading">Course Approval Process</h2>
+      <p class="body-text">Study abroad courses may count as elective credit, fulfill distribution requirements, or fulfill major requirements (with major department approval). There are three approval steps.</p>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">A&amp;S Study Abroad Participation &amp; Course Approval Form</div><div class="step-desc">Submitted as part of your Cornell study abroad application. Propose a tentative course list, potential requirements they could fulfill, and a degree completion plan within 8 semesters.</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Final Course Enrollments &amp; Approvals</div><div class="step-desc">Submitted after enrolling in all study abroad courses and confirmed they will not change — often happens after you are already abroad.</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Final Confirmation of Credit Approval</div><div class="step-desc">Submitted after returning and after your study abroad transcript is received by A&amp;S.</div></div></div>
+      </div>
+      <div class="note-box"><strong>Save all syllabi, reading lists, and completed work</strong> from your courses abroad — these materials are often required to confirm distribution or major credit.</div>
+      <div class="cta-row"><span class="cta-btn secondary">Access Course Approval Forms (data.arts)</span><span class="cta-btn secondary">Study Abroad Course Approval Guidelines</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- COURSEWORK -->
+    <div class="section" id="sec-coursework"><span class="section-anchor" id="coursework"></span>
+      <h2 class="section-heading">Coursework &amp; Credits</h2>
+      <ul class="req-list">
+        <li>Must enroll in a <strong>full course load</strong> as defined by the host institution — typically earns 15 Cornell credits</li>
+        <li>All courses must be taken <strong>in person</strong> and for a <strong>letter grade</strong> — no online, hybrid, or S/U courses</li>
+        <li>No credit for grades below a C (or equivalent)</li>
+        <li>Maximum of <strong>one non-A&amp;S course</strong> allowed with prior college approval</li>
+        <li>Courses may fulfill: major/minor requirements (dept. approval needed), distribution requirements (college approval needed), or elective credit</li>
+        <li>Study abroad courses <strong>cannot</strong> fulfill FWS, language, or PE requirements</li>
+        <li>Internships and experiential learning courses generally do <strong>not</strong> count for academic credit</li>
+        <li>You may not take Cornell courses remotely during your semester abroad</li>
+      </ul>
+      <div class="note-box">Grades earned abroad are <strong>not</strong> calculated into your Cornell GPA.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- TRANSCRIPTS -->
+    <div class="section" id="sec-transcripts"><span class="section-anchor" id="transcripts"></span>
+      <h2 class="section-heading">Transcripts</h2>
+      <ul class="req-list">
+        <li>After final grades post, ensure an <strong>official transcript</strong> is sent from your host institution to the Office of Global Learning</li>
+        <li>Upon receipt, A&amp;S sends a final credit approval form — must be completed before credits are processed</li>
+        <li>All courses and grades appear on your Cornell transcript exactly as they appear on your study abroad transcript</li>
+        <li>Students who don't complete the semester in good academic standing will be reviewed by the College</li>
+      </ul>
+      <div class="cta-row"><span class="cta-btn secondary">Transcripts &amp; Credits — Education Abroad</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- ADVISORS -->
+    <div class="section" id="sec-advisors"><span class="section-anchor" id="advisors"></span>
+      <h2 class="section-heading">Study Abroad Advisors</h2>
+      <p class="body-text">A&amp;S study abroad advisors help with academic planning and degree progress. For non-academic matters (housing, visas, financial aid, applications), contact your Education Abroad advisor.</p>
+      <table class="elig-table">
+        <thead><tr><th>Advisor</th><th>Students (by Last Name)</th><th>Schedule</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Peggy Parmenter</strong></td><td>A – H</td><td>Mon, Tue, Thu, Fri in KG17; Wed remote</td></tr>
+          <tr><td><strong>Aoise Stratford</strong></td><td>I – M</td><td>Mon–Thu in KG17</td></tr>
+          <tr><td><strong>Paul Sulzer</strong></td><td>N – Z</td><td>Mon–Thu in KG17; Fri remote</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">Quick questions: Zoom drop-ins, Mon–Thu 3–4 PM. Longer discussions (choosing a program, degree planning): schedule a 30-minute appointment. Questions? Email as_studyabroad@cornell.edu</div>
+      <div class="cta-row"><span class="cta-btn">Schedule an Appointment</span><span class="cta-btn secondary">Email Study Abroad Team</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- SHORT-TERM -->
+    <div class="section" id="sec-shortterm"><span class="section-anchor" id="shortterm"></span>
+      <h2 class="section-heading">Short-Term Programs</h2>
+      <p class="body-text">Winter, spring break, and summer programs are <strong>not subject to A&amp;S study abroad policies</strong>. No A&amp;S permission required — apply independently.</p>
+      <div class="two-col">
+        <div class="col-card">
+          <div class="col-card-title">Cornell Short-Term Programs</div>
+          <div class="col-card-desc">Meet with the Education Abroad advisor for short-term programs to understand credit eligibility.</div>
+        </div>
+        <div class="col-card">
+          <div class="col-card-title">Non-Cornell Short-Term Programs</div>
+          <div class="col-card-desc">Refer to A&amp;S transfer credit guidelines to understand how coursework may or may not fulfill degree requirements. When in doubt, check with your advising dean.</div>
+        </div>
+      </div>
+      <div class="cta-row">
+        <span class="cta-btn secondary">Transfer Credit Guidelines</span>
+        <span class="cta-btn secondary">Education Abroad — Short-Term Programs</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- FAQ -->
+    <div class="section" id="sec-faq"><span class="section-anchor" id="faq"></span>
+      <h2 class="section-heading">Study Abroad FAQs</h2>
+      <div class="faq-item"><div class="faq-q">When can I study abroad?</div><div class="faq-a">Most students go junior year or fall of senior year. Not allowed: first year, final semester. Most programs don't accept sophomores.</div></div>
+      <div class="faq-item"><div class="faq-q">Where can I study abroad?</div><div class="faq-a">Any program approved by the College of Arts &amp; Sciences, as long as you meet all eligibility requirements for that program.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I fulfill the A&amp;S language requirement abroad?</div><div class="faq-a">No — the language requirement must be fulfilled through Cornell courses taken at Cornell.</div></div>
+      <div class="faq-item"><div class="faq-q">How will study abroad courses count toward my degree?</div><div class="faq-a">They may fulfill major/minor requirements (dept. approval), distribution requirements (college approval), or elective credit. Don't assume any specific requirement will be fulfilled other than the 15 Cornell credits for a full semester.</div></div>
+      <div class="faq-item"><div class="faq-q">How will study abroad courses appear on my transcript?</div><div class="faq-a">Exactly as they appear on your study abroad transcript — courses and grades both appear on your Cornell transcript. Grades are not factored into your Cornell GPA.</div></div>
+      <div class="faq-item"><div class="faq-q">I need to take different courses than I proposed. How do I get approval?</div><div class="faq-a">Email your A&amp;S study abroad advisor and major department (for major courses) between Step 1 and Step 2 of the course approval process.</div></div>
+      <div class="faq-item"><div class="faq-q">Can I leave early for a summer internship?</div><div class="faq-a">No. When you commit to a program, you commit to be there from start to finish.</div></div>
+      <div class="faq-item"><div class="faq-q">Who handles housing, finances, and visa questions?</div><div class="faq-a">Your Education Abroad advisor — not the A&amp;S study abroad team. Find your advisor on your desired program's snapshot page.</div></div>
+  </div>
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+<a class="right-link" onclick="go('overview')">Overview</a>
+    <a class="right-link" onclick="go('eligibility')">Eligibility</a>
+    <a class="right-link" onclick="go('language')">Language Requirement</a>
+    <a class="right-link" onclick="go('timeline')">Planning Timeline</a>
+    <a class="right-link" onclick="go('approval')">Course Approval Process</a>
+    <a class="right-link" onclick="go('coursework')">Coursework &amp; Credits</a>
+    <a class="right-link" onclick="go('transcripts')">Transcripts</a>
+    <a class="right-link" onclick="go('advisors')">Study Abroad Advisors</a>
+    <a class="right-link" onclick="go('shortterm')">Short-Term Programs</a>
+    <a class="right-link" onclick="go('faq')">Study Abroad FAQs</a>
+  </div></div>
+</div>
+<script>
+var secs=['overview','eligibility','language','timeline','approval','coursework','transcripts','advisors','shortterm','faq']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>

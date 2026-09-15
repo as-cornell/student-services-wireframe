@@ -1,0 +1,376 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>New Student Orientation</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link active" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Academic Advising</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">New Student Orientation</h1>
+    <p class="page-subtitle">Essential information and resources for first-year and transfer students. A team of advising deans, faculty, and peer ambassadors is ready to help you build your first semester.</p>
+    <div class="cta-banner">
+      <div class="cta-banner-text">Ready to meet with your advising dean?</div>
+      <span class="cta-banner-btn">Schedule an Appointment</span>
+    </div>
+
+    <!-- KEY DATES -->
+    <div class="section" id="sec-dates"><span class="section-anchor" id="dates"></span>
+      <h2 class="section-heading">Key Dates</h2>
+      <p class="body-text">The academic calendar lists all important dates and deadlines — add/drop periods, pre-enrollment windows, grade option deadlines, and more.</p>
+      <div class="cta-row"><span class="cta-btn">View Academic Calendar</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- MAJOR -->
+    <div class="section" id="sec-major"><span class="section-anchor" id="major"></span>
+      <h2 class="section-heading">Thinking About a Major</h2>
+      <p class="body-text">A&amp;S offers 40 majors. You have until the end of your sophomore year to declare. Use your first semesters to explore.</p>
+
+      <div class="subsection-heading">First-Year Students</div>
+      <p class="body-text">All A&amp;S first-years start as undeclared. This is typical and intentional — it gives you freedom to explore before committing.</p>
+      <ul class="req-list">
+        <li>Browse the <strong>Course Guidance for Major Exploration</strong> to find recommended intro courses by field</li>
+        <li>Take courses in 2–3 departments that look most interesting</li>
+      </ul>
+
+      <div class="subsection-heading">Transfer Students</div>
+      <ul class="req-list">
+        <li>Most majors have <strong>prerequisite courses</strong> — check the University Catalog and departmental websites</li>
+        <li>If continuing a major from your previous institution, contact the department to determine how prior courses apply — you may need to provide a syllabus or course description</li>
+      </ul>
+      <div class="cta-row">
+        <span class="cta-btn secondary">Course Guidance for Major Exploration</span>
+        <span class="cta-btn secondary">Choosing a Major / Minor</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- DEGREE REQUIREMENTS -->
+    <div class="section" id="sec-degree"><span class="section-anchor" id="degree"></span>
+      <h2 class="section-heading">Degree Requirements</h2>
+      <p class="body-text">Students matriculating fall 2020 or later follow the current A&amp;S curriculum.</p>
+      <table class="elig-table">
+        <thead><tr><th>Requirement</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>First-Year Writing Seminars (FWS)</strong></td><td>Two required; begin in first semester</td></tr>
+          <tr><td><strong>Language</strong></td><td>Option 1: one intermediate course (2000+); Option 2: 11 credits in sequence</td></tr>
+          <tr><td><strong>Distribution Requirements</strong></td><td>Min. 8 courses across 10 categories</td></tr>
+          <tr><td><strong>Major</strong></td><td>Declare by start of junior year</td></tr>
+          <tr><td><strong>Credits</strong></td><td>120 total; 100 must be Arts &amp; Sciences</td></tr>
+          <tr><td><strong>Residency</strong></td><td>8 semesters (transfers: 4 semesters, 60 Cornell credits)</td></tr>
+          <tr><td><strong>Physical Education &amp; Swim Test</strong></td><td>Waived for transfers who matriculated before Summer 2025</td></tr>
+        </tbody>
+      </table>
+      <div class="cta-row"><span class="cta-btn secondary">Full Degree Requirements</span><span class="cta-btn secondary">University Catalog</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- SCHEDULE -->
+    <div class="section" id="sec-schedule"><span class="section-anchor" id="schedule"></span>
+      <h2 class="section-heading">Building Your First Semester Schedule</h2>
+
+      <div class="subsection-heading">General Guidelines</div>
+      <table class="elig-table">
+        <thead><tr><th></th><th>First-Year Students</th><th>Transfer Students</th></tr></thead>
+        <tbody>
+          <tr><td>Course load</td><td>4–5 courses (12–16 credits); max 18</td><td>4–5 courses (12–16 credits); max 18</td></tr>
+          <tr><td>Typical pace</td><td>~15 credits/semester to reach 120</td><td>~15 credits/semester to reach 120</td></tr>
+          <tr><td>Writing</td><td>Include an FWS in first semester</td><td>Prioritize ENGL 2880/2890 or FWS if not yet fulfilled</td></tr>
+          <tr><td>Language</td><td>Begin in first or second year; take placement test if continuing a language</td><td>Must take placement exam to continue a language; first courses often only offered in fall</td></tr>
+          <tr><td>Required seminar</td><td>AS 1102 (1-credit advising seminar) — excludes OUB and Posse students</td><td>N/A</td></tr>
+          <tr><td>PE</td><td>Enroll in a PE course (does not count toward 12-credit standing)</td><td>N/A</td></tr>
+        </tbody>
+      </table>
+
+      <div class="subsection-heading">Science, Math &amp; CS — Department-Specific Guidance</div>
+      <div class="two-col">
+        <div class="col-card"><div class="col-card-title">Biology</div><div class="col-card-desc">First-Year Advising Guide (OUB); Long Range Planner available</div></div>
+        <div class="col-card"><div class="col-card-title">Chemistry</div><div class="col-card-desc">See dept. site for course selection and lab waitlist policy</div></div>
+        <div class="col-card"><div class="col-card-title">Physics</div><div class="col-card-desc">physics.cornell.edu/undergraduate</div></div>
+        <div class="col-card"><div class="col-card-title">Computer Science</div><div class="col-card-desc">cs.cornell.edu — first course guide and waitlist policy</div></div>
+        <div class="col-card"><div class="col-card-title">Mathematics</div><div class="col-card-desc">math.cornell.edu — First Steps in Math; waitlist policy</div></div>
+      </div>
+      <div class="note-box">If your interests are in the arts, humanities, or social sciences, <strong>you don't need a math or science course in your first semester.</strong> Introductory courses in your areas of interest take priority.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- ENROLLING -->
+    <div class="section" id="sec-enroll"><span class="section-anchor" id="enroll"></span>
+      <h2 class="section-heading">Enrolling in Courses</h2>
+      <ul class="req-list">
+        <li>Use the <strong>Class Roster Scheduler</strong> to build and save possible schedules before officially enrolling</li>
+        <li>Star ("favorite") courses that interest you — then enroll through <strong>Student Center</strong></li>
+        <li>Adding to your shopping cart does <strong>not</strong> reserve your spot — click "Finish Enrolling"</li>
+        <li>Every course component must be enrolled: lecture, discussion section, and/or lab</li>
+        <li><strong>Course levels:</strong> 1000–2000 = introductory (typical for first-years); 3000–4000 = upper-level; 5000+ = graduate (not recommended for first-years)</li>
+        <li>If enrolling in a 3000/4000-level course, check prerequisites and consider contacting the instructor to confirm you have the background</li>
+      </ul>
+      <div class="note-box">For FWS enrollment, consult the <strong>Knight Writing Institute</strong> for current guidelines and section availability.</div>
+      <div class="cta-row">
+        <span class="cta-btn secondary">Class Roster</span>
+        <span class="cta-btn secondary">Step-by-Step Enrollment Guide</span>
+        <span class="cta-btn secondary">FWS Guidelines (Knight Institute)</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- TRANSFER CREDIT -->
+    <div class="section" id="sec-transfer-credit"><span class="section-anchor" id="transfer-credit"></span>
+      <h2 class="section-heading">Transfer Credit Evaluation <span style="font-size:13px;font-weight:400;color:#555;">(Transfer Students Only)</span></h2>
+      <p class="body-text">Your credit evaluation arrived with your admission letter and shows how prior coursework satisfies Cornell requirements. It creates your DUST record.</p>
+
+      <div class="subsection-heading">Key Rules</div>
+      <table class="elig-table">
+        <thead><tr><th>Topic</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td>Credit cap</td><td>Max 15 credits per semester / 30 per year for full-time study</td></tr>
+          <tr><td>Minimum grade</td><td>C or above required for transfer</td></tr>
+          <tr><td>College of Arts &amp; Sciences vs. Non-A&amp;S</td><td>100 College of Arts &amp; Sciences credits required; transfer liberal arts courses count toward them; AP/IB counts as Non-A&amp;S</td></tr>
+          <tr><td>Quarter-hour courses</td><td>5+ quarter credits = 3 Cornell credits; 3 quarter courses ≈ 2 semester courses</td></tr>
+          <tr><td>Post-matriculation</td><td>Courses taken elsewhere after enrolling at Cornell do NOT count toward 100 College of Arts &amp; Sciences credits, distributions, or language requirement</td></tr>
+          <tr><td>FWS</td><td>Only composition courses matching Cornell's FWS guidelines qualify — not just any English course</td></tr>
+          <tr><td>Language</td><td>Must reach intermediate level (Option 1) or 11 credit-hours in sequence (Option 2) — may combine transfer + Cornell courses</td></tr>
+          <tr><td>Major credit</td><td>Each department decides independently whether transfer courses count toward the major — contact the DUS</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">If you believe a course should fulfill a college requirement but isn't listed, contact <strong>Savannah Williams (ss376@cornell.edu)</strong>.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- AP/IB -->
+    <div class="section" id="sec-ap"><span class="section-anchor" id="ap"></span>
+      <h2 class="section-heading">AP, IB &amp; A-Level Credits</h2>
+      <ul class="req-list">
+        <li>Credits are added to your Student Center automatically once exam scores are received — may take several weeks (July–August for incoming first-years)</li>
+        <li>You may enroll in courses assuming placement credit <strong>before</strong> credits appear on your record</li>
+        <li>If you take an intro course that your AP/IB credit places you out of, <strong>you forfeit that credit</strong></li>
+        <li>Some departments recommend taking the intro course anyway for grounding in methodology — check department websites</li>
+        <li>AP/IB does <strong>not</strong> fulfill the A&amp;S language requirement (placement only)</li>
+      </ul>
+      <div class="cta-row"><span class="cta-btn secondary">AP / IB / A-Level Credit Details</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- TOOLS -->
+    <div class="section" id="sec-tools"><span class="section-anchor" id="tools"></span>
+      <h2 class="section-heading">Online Tools</h2>
+      <div class="two-col">
+        <div class="col-card"><div class="col-card-title">Class Roster</div><div class="col-card-desc">Browse courses by subject, view meeting times and locations, use the Scheduler to build draft schedules</div></div>
+        <div class="col-card"><div class="col-card-title">University Catalog</div><div class="col-card-desc">Catalog of all Cornell programs, policies, degree requirements, and course descriptions</div></div>
+        <div class="col-card"><div class="col-card-title">DUST Report</div><div class="col-card-desc">Track progress toward college distribution and university requirements (updated each semester after grades post)</div></div>
+        <div class="col-card"><div class="col-card-title">Student Center / Student Essentials</div><div class="col-card-desc">Academic portal for enrollment, transcripts, financial aid, bursar, and personal information</div></div>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- SUPPORT PARTNERS -->
+    <div class="section" id="sec-partners"><span class="section-anchor" id="partners"></span>
+      <h2 class="section-heading">Support Partners</h2>
+      <div class="two-col">
+        <div class="col-card"><div class="col-card-title">Career Development</div><div class="col-card-desc">Career exploration, internship &amp; job search, resume, grad school applications</div></div>
+        <div class="col-card"><div class="col-card-title">Cornell Health</div><div class="col-card-desc">Medical, counseling, and pharmacy services</div></div>
+        <div class="col-card"><div class="col-card-title">Knight Institute Writing Center</div><div class="col-card-desc">Tutors for FWS and other writing — brainstorming, drafting, argument</div></div>
+        <div class="col-card"><div class="col-card-title">Learning Strategy Center (LSC)</div><div class="col-card-desc">Study skills workshops, tutoring, time management, supplemental courses</div></div>
+        <div class="col-card"><div class="col-card-title">Student Disability Services (SDS)</div><div class="col-card-desc">Register before the semester for accommodations including placement exam support</div></div>
+        <div class="col-card"><div class="col-card-title">Office of Academic Diversity Initiatives (OADI)</div><div class="col-card-desc">Support for under-represented, low-income, and first-generation students</div></div>
+        <div class="col-card"><div class="col-card-title">Office of Global Learning</div><div class="col-card-desc">Education Abroad (study abroad) and International Services for international students</div></div>
+        <div class="col-card"><div class="col-card-title">Latinx Student Success Office (LSSO)</div><div class="col-card-desc">Programs and community hub for the Latinx community</div></div>
+        <div class="col-card"><div class="col-card-title">Pre-Law Advising</div><div class="col-card-desc">Information and resources for students interested in law school</div></div>
+        <div class="col-card"><div class="col-card-title">Undergraduate Research</div><div class="col-card-desc">How to get started in research and find funding</div></div>
+      </div>
+      <div class="subsection-heading">Identity Resources (Students &amp; Campus Life)</div>
+      <ul class="req-list">
+        <li>Asian &amp; Asian American Center (A3C)</li>
+        <li>First Generation &amp; Low Income Support</li>
+        <li>LGBT Resource Center</li>
+        <li>Office of Spirituality and Meaning Making</li>
+        <li>Multicultural Student Leadership and Empowerment</li>
+        <li>Undocumented &amp; DACA Support</li>
+        <li>Women's Resource Center</li>
+      </ul>
+    </div><div class="section-divider"></div>
+
+    <!-- CONTACTS -->
+    <div class="section" id="sec-contacts"><span class="section-anchor" id="contacts"></span>
+      <h2 class="section-heading">Contacts</h2>
+      <table class="elig-table">
+        <thead><tr><th>Who</th><th>What they help with</th><th>How to reach them</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Advising Dean</strong></td><td>Academic planning, college requirements, resources</td><td>Schedule via appointment portal</td></tr>
+          <tr><td><strong>Faculty Advisor / DUS</strong></td><td>Major-specific questions, course planning</td><td>Department websites</td></tr>
+          <tr><td><strong>Peer Ambassador</strong></td><td>Student perspective on campus life and transition</td><td>Assigned to first-year students</td></tr>
+          <tr><td><strong>Office of Undergraduate Biology (OUB)</strong></td><td>Biology major academic planning and programs</td><td>biology.cornell.edu</td></tr>
+          <tr><td><strong>General Questions</strong></td><td>Any orientation question</td><td>as-studentservices@cornell.edu (Cornell email only)</td></tr>
+        </tbody>
+      </table>
+      <div class="cta-row"><span class="cta-btn">Schedule an Appointment</span><span class="cta-btn secondary">Advising Deans Directory</span></div>
+  </div>
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+<a class="right-link" onclick="go('dates')">Key Dates</a>
+    <a class="right-link" onclick="go('major')">Thinking About a Major</a>
+    <a class="right-link" onclick="go('degree')">Degree Requirements</a>
+    <a class="right-link" onclick="go('schedule')">Building Your First Semester Schedule</a>
+    <a class="right-link" onclick="go('enroll')">Enrolling in Courses</a>
+    <a class="right-link" onclick="go('transfer-credit')">Transfer Credit Evaluation</a>
+    <a class="right-link" onclick="go('ap')">AP, IB &amp; A-Level Credits</a>
+    <a class="right-link" onclick="go('tools')">Online Tools</a>
+    <a class="right-link" onclick="go('partners')">Support Partners</a>
+    <a class="right-link" onclick="go('contacts')">Contacts</a>
+  </div></div>
+</div>
+<script>
+var secs=['dates','major','degree','schedule','enroll','transfer-credit','ap','tools','partners','contacts']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>

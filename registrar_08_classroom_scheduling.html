@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Classroom Scheduling</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link active" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Registrar Services — Policy</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Classroom Scheduling Policies &amp; Guidelines</h1>
+    <p class="page-subtitle">Rules for reserving centrally scheduled A&amp;S classrooms, managed by the A&amp;S Registrar's Office (KG17 Klarman Hall). Other campus spaces follow their own schedulers' policies — see scheduling.cornell.edu for general event scheduling.</p>
+
+    <div class="alert-box"><strong>McGraw Hall closed for renovations</strong> — beginning Winter 2024, expected to reopen Spring 2028. <strong>Klarman Auditorium (KG70)</strong> use after business hours is restricted; email as_rmrsv@cornell.edu to request.</div>
+
+    <!-- START OF SEMESTER -->
+    <div class="section" id="sec-start"><span class="section-anchor" id="start"></span>
+      <h2 class="section-heading">Start-of-Semester Rules (Fall &amp; Spring)</h2>
+      <ul class="req-list">
+        <li>Requests for fall student events submitted <strong>before August 1</strong> will be denied</li>
+        <li>Processing begins close to the first day of classes; classroom instruction is prioritized — expect <strong>2–3 weeks</strong> for your request to be reviewed</li>
+        <li><strong>First two weeks of semester:</strong> student organizations may only hold events Friday after 4:30pm through Sunday evening</li>
+        <li>Organizations needing large room blocks across multiple days may reserve a maximum of <strong>6 A&amp;S rooms</strong> — spread remaining requests across campus. Requests for 6+ locations require direct review via email.</li>
+      </ul>
+    </div><div class="section-divider"></div>
+
+    <!-- GENERAL -->
+    <div class="section" id="sec-general"><span class="section-anchor" id="general"></span>
+      <h2 class="section-heading">General Scheduling Rules</h2>
+      <ul class="req-list">
+        <li>Reservations are <strong>not guaranteed</strong> — reviewed first-come, first-served</li>
+        <li>No student events before <strong>4:30pm on weekdays</strong></li>
+        <li>At least a <strong>15-minute gap</strong> required between events (check the 25Live Availability Grid)</li>
+        <li>No A&amp;S room reservations during winter/summer break or exam/study period</li>
+        <li>Requests for multiple rooms <strong>without a stated reason</strong> in the comment section will be denied</li>
+        <li>Project teams are categorized as <strong>student events</strong></li>
+        <li>Confirmed student events may be <strong>rescheduled</strong> if a Cornell organization needs the space for a higher-priority event</li>
+      </ul>
+    </div><div class="section-divider"></div>
+
+    <!-- AUDITORIUMS -->
+    <div class="section" id="sec-auditoriums"><span class="section-anchor" id="auditoriums"></span>
+      <h2 class="section-heading">Large Auditoriums</h2>
+      <p class="body-text">Your headcount must meet at least <strong>50% of room capacity</strong> to reserve these spaces (unless a stage is required):</p>
+      <table class="elig-table">
+        <thead><tr><th>Auditorium</th><th>Room Code</th><th>Capacity</th></tr></thead>
+        <tbody>
+          <tr><td>HEC Auditorium</td><td>GSH132</td><td>210</td></tr>
+          <tr><td>Lewis Auditorium</td><td>GSHG76</td><td>200</td></tr>
+          <tr><td>Kaufman Auditorium</td><td>GSHG64</td><td>145</td></tr>
+          <tr><td>Uris Auditorium</td><td>URHG01</td><td>441</td></tr>
+        </tbody>
+      </table>
+    </div><div class="section-divider"></div>
+
+    <!-- HOW TO -->
+    <div class="section" id="sec-howto"><span class="section-anchor" id="howto"></span>
+      <h2 class="section-heading">How to Check Availability</h2>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Open 25Live</div><div class="step-desc">Navigate to the home page and select "More" in the upper right.</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Select "Availability"</div><div class="step-desc">View the availability grid for your desired space.</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Check "Include Requested"</div><div class="step-desc">Shows pending requests as grey dashed lines — choose a different space if one overlaps your desired time.</div></div></div>
+      </div>
+      <div class="note-box">Submit requests at least <strong>5 business days</strong> before your event for a timely response. Submit one form per event, and request only the rooms you actually need.</div>
+      <div class="cta-row"><span class="cta-btn">25Live — Check Availability</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- ROOMS -->
+    <div class="section" id="sec-rooms"><span class="section-anchor" id="rooms"></span>
+      <h2 class="section-heading">College Rooms Scheduled by A&amp;S Registrar</h2>
+      <table class="elig-table">
+        <thead><tr><th>Building</th><th>Code</th><th>Room Numbers</th></tr></thead>
+        <tbody>
+          <tr><td>Goldwin Smith Hall</td><td>GSH</td><td>132, 142, 144, 156, 158, 160, 162, 164, 181, G64, G76</td></tr>
+          <tr><td>Morrill Hall</td><td>MRL</td><td>102, 106, 107, 110, 111</td></tr>
+          <tr><td>Rockefeller Hall</td><td>RCK</td><td>102, 103, 104, 105, 110, 112, 115, 122, 128, 132, 183, 185, 187, 189, B15, B16</td></tr>
+          <tr><td>Uris Hall</td><td>URH</td><td>202, 204, 254, 260, 262, 301, 302, 303, 312, 331, 369, 375A, 394, 398, 438, 494, 498, G01, G20, G22, G24, G26, G44, G88</td></tr>
+        </tbody>
+      </table>
+      <div class="cta-row"><span class="cta-btn">Email A&amp;S Room Reservations</span></div>
+    </div>
+
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+    <a class="right-link" onclick="go('start')">Start-of-Semester Rules (Fall &amp; Spring)</a>
+    <a class="right-link" onclick="go('general')">General Scheduling Rules</a>
+    <a class="right-link" onclick="go('auditoriums')">Large Auditoriums</a>
+    <a class="right-link" onclick="go('howto')">How to Check Availability</a>
+    <a class="right-link" onclick="go('rooms')">College Rooms Scheduled by A&amp;S Registrar</a>
+  </div></div>
+</div>
+<script>
+var secs=['start','general','auditoriums','howto','rooms']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>

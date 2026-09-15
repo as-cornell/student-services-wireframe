@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Academic Policies</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link active" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Registrar Services — Policy</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Academic Policies</h1>
+    <p class="page-subtitle">The official rules governing academic integrity, standing, course changes, and leaves of absence in the College of Arts &amp; Sciences.</p>
+
+    <div class="note-box">
+      <strong>Need help applying these rules to your situation?</strong> Your <a href="00_advising.html" style="color:#111">advising dean</a> can talk through your options before you act.
+    </div>
+
+    <!-- INTEGRITY -->
+    <div class="section" id="sec-integrity"><span class="section-anchor" id="integrity"></span>
+      <h2 class="section-heading">Academic Integrity</h2>
+      <p class="body-text">All students are responsible for understanding their rights and responsibilities under Cornell's Code of Academic Integrity. <strong>Plagiarism</strong> — using or adapting another's words or ideas without acknowledgment — is the most common violation.</p>
+      <div class="cta-row">
+        <span class="cta-btn secondary">Code of Academic Integrity</span>
+        <span class="cta-btn secondary">Guide to Avoiding Plagiarism</span>
+        <span class="cta-btn secondary">Academic Integrity Quiz</span>
+        <span class="cta-btn secondary">Citation Guide (Library)</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- STANDING -->
+    <div class="section" id="sec-standing"><span class="section-anchor" id="standing"></span>
+      <h2 class="section-heading">Academic Standing</h2>
+      <p class="body-text">To maintain good academic standing each semester, a student must:</p>
+      <table class="elig-table">
+        <thead><tr><th>#</th><th>Requirement</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Complete at least 12 academic credits by semester's end</td></tr>
+          <tr><td>2</td><td>Attain a semester GPA of 2.0 or better</td></tr>
+          <tr><td>3</td><td>Be admitted into a major by the end of the summer following sophomore year</td></tr>
+          <tr><td>4</td><td>Complete two First-Year Writing Seminars within the first four semesters</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">To stay on pace for 8-semester graduation, students should reach <strong>60 credits</strong> by end of sophomore year and <strong>90 credits</strong> by end of junior year. Courses on the <strong>Courses That Won't Count</strong> list do not count toward standing.</div>
+      <p class="body-text">Students who don't meet one or more criteria are reviewed by the <strong>Academic Records Committee</strong> at semester's end. Possible outcomes: warning, elevated warning, or a required leave of absence (one semester or one year).</p>
+      <div class="cta-row"><span class="cta-btn secondary">Courses That Won't Count</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- ADD/DROP -->
+    <div class="section" id="sec-adddrop"><span class="section-anchor" id="adddrop"></span>
+      <h2 class="section-heading">Add / Drop Deadlines</h2>
+      <table class="elig-table">
+        <thead><tr><th>Action</th><th>Deadline</th></tr></thead>
+        <tbody>
+          <tr><td>Add a course</td><td>First 15 calendar days of the semester</td></tr>
+          <tr><td>Drop a course</td><td>First 57 days — removes course from transcript entirely</td></tr>
+          <tr><td>Withdraw after day 57</td><td>Requires petition; results in a permanent "W" on the transcript</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">A student charged with an academic integrity violation in a course may not drop it without written instructor permission, unless cleared. The effective date of any change is the day complete paperwork is submitted to the Registrar.</div>
+      <div class="cta-row"><span class="cta-btn secondary">Full Academic Calendar</span><span class="cta-btn secondary">Petition to Withdraw</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- DEAN'S LIST -->
+    <div class="section" id="sec-deanslist"><span class="section-anchor" id="deanslist"></span>
+      <h2 class="section-heading">Dean's List</h2>
+      <div class="alert-box"><strong>Being phased out:</strong> Not applicable to students matriculating Summer 2023+. Discontinued for all students after Spring 2026. See Graduation &amp; Academic Honors for the replacement system.</div>
+      <table class="elig-table">
+        <thead><tr><th>Criterion (2025–2026)</th><th>Requirement</th></tr></thead>
+        <tbody>
+          <tr><td>Semester GPA</td><td>3.600 minimum (not rounded)</td></tr>
+          <tr><td>Grades</td><td>No failing, unsatisfactory, missing, or incomplete grades</td></tr>
+          <tr><td>Letter-graded credits</td><td>At least 15 (S/U credits don't count)</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">Eligible retroactively within one year of the term if an incomplete or missing grade is resolved. Contact the A&amp;S Registrar's Office to request retroactive recognition.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- HOURS -->
+    <div class="section" id="sec-hours"><span class="section-anchor" id="hours"></span>
+      <h2 class="section-heading">Overhours / Underhours</h2>
+      <table class="elig-table">
+        <thead><tr><th></th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Standard max</strong></td><td>22 credits, if in good standing</td></tr>
+          <tr><td><strong>Warning status max</strong></td><td>18 credits if on warning/elevated warning from prior term</td></tr>
+          <tr><td><strong>23+ credits</strong></td><td>Requires a petition; approved only for serious extenuating circumstances (e.g., a senior needing credits to graduate on time)</td></tr>
+          <tr><td><strong>First-years</strong></td><td>Recommended max of 18 credits in first term (not a hard rule)</td></tr>
+          <tr><td><strong>Minimum (good standing)</strong></td><td>12 academic credits per semester</td></tr>
+          <tr><td><strong>Below 12 credits</strong></td><td>Triggers Academic Records Committee review at semester's end; may affect financial aid or visa status</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">Unapproved overhours enrollment: only 18 or 22 credits (as applicable) will count toward the degree that semester.</div>
+      <div class="cta-row"><span class="cta-btn secondary">Petition for Overhours</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- LEAVES -->
+    <div class="section" id="sec-leaves"><span class="section-anchor" id="leaves"></span>
+      <h2 class="section-heading">Leaves of Absence</h2>
+      <table class="elig-table">
+        <thead><tr><th>Type</th><th>Policy</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Personal — before term starts</strong></td><td>No tuition charge. May apply to return the following semester.</td></tr>
+          <tr><td><strong>Personal — after term starts, before drop deadline</strong></td><td>Partial tuition/charges apply. Courses dropped from record without "W"s. May apply to return next term.</td></tr>
+          <tr><td><strong>Personal — after university drop deadline</strong></td><td>"W"s appear on all courses (except completed partial-term courses). Cannot return until after one full semester away. Additional return conditions may apply.</td></tr>
+          <tr><td><strong>Health</strong></td><td>Must consult Cornell Health Services to initiate. Readmission requires Cornell Health's recommendation. Incompletes should be resolved before return.</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">All leaves expire after <strong>five years</strong> and result in permanent withdrawal from the college.</div>
+      <div class="cta-row">
+        <span class="cta-btn">Leave of Absence &amp; Withdrawal Form</span>
+        <span class="cta-btn secondary">University Catalog — Full Leave Policy</span>
+        <span class="cta-btn secondary">Tuition Refund Policy</span>
+      </div>
+    </div><div class="section-divider"></div>
+
+    <!-- RETURNING -->
+    <div class="section" id="sec-returning"><span class="section-anchor" id="returning"></span>
+      <h2 class="section-heading">Returning from Leave</h2>
+      <ul class="req-list">
+        <li>Complete the <strong>Return from Leave form</strong>, with documentation that all return conditions are satisfied (including any Bursar holds)</li>
+        <li>Health leave returns require contacting <strong>Cornell Health</strong> and working with the Health Leaves Coordinator</li>
+        <li>Submit your return request by <strong>March 1</strong> (for fall) or <strong>October 1</strong> (for spring) to facilitate pre-enrollment</li>
+        <li>Credit earned while on leave is governed by the <strong>Transferring Credits</strong> policy</li>
+      </ul>
+      <div class="note-box">Away more than 5 years or previously withdrawn? Email as-studentservices@cornell.edu — staff will help determine whether a return is possible.</div>
+      <div class="cta-row"><span class="cta-btn">Return from Leave Form</span><span class="cta-btn secondary">Transferring Credits</span></div>
+    </div>
+
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+    <a class="right-link" onclick="go('integrity')">Academic Integrity</a>
+    <a class="right-link" onclick="go('standing')">Academic Standing</a>
+    <a class="right-link" onclick="go('adddrop')">Add / Drop Deadlines</a>
+    <a class="right-link" onclick="go('deanslist')">Dean's List</a>
+    <a class="right-link" onclick="go('hours')">Overhours / Underhours</a>
+    <a class="right-link" onclick="go('leaves')">Leaves of Absence</a>
+    <a class="right-link" onclick="go('returning')">Returning from Leave</a>
+  </div></div>
+</div>
+<script>
+var secs=['integrity','standing','adddrop','deanslist','hours','leaves','returning']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>

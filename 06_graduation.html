@@ -1,0 +1,283 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Graduation</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#fff;color:#111;font-size:14px;line-height:1.6}
+.topbar{border-bottom:1px solid #bbb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{font-size:13px;font-weight:600}.topbar-right{font-size:11px;color:#555}
+.sitenav{display:flex;border-bottom:1px solid #bbb;padding:0 20px}
+.snav-item{padding:8px 14px;font-size:12px;color:#555;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.snav-item.active{color:#111;border-bottom-color:#111;font-weight:500}
+.layout{display:grid;grid-template-columns:190px 1fr 160px;max-width:1100px;margin:0 auto}
+.left-col{padding:28px 0 40px 16px;border-right:1px solid #bbb}
+.left-sticky{position:sticky;top:20px}
+.left-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.left-label-link{display:block;font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb;text-decoration:none}
+.left-label-link:hover{color:#111}
+.left-label-link.active{color:#111}
+.left-group-link{display:block;font-size:10px;text-transform:uppercase;color:#666;letter-spacing:.06em;font-weight:700;padding:5px 10px 4px;margin-top:4px;text-decoration:none;border-left:2px solid transparent}
+.left-group-link:hover{color:#111;border-left-color:#bbb}
+.left-group-link.active{color:#111;border-left-color:#111;background:#f5f5f5}
+.left-link{display:block;font-size:12px;color:#555;padding:5px 10px;border-left:2px solid transparent;margin-bottom:1px;line-height:1.4;text-decoration:none}
+.left-link:hover{color:#111;border-left-color:#bbb}
+.left-link.active{color:#111;border-left-color:#111;font-weight:600;background:#f5f5f5}
+.main-col{padding:28px 24px 60px 28px}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.eyebrow-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em}
+.eyebrow-rule{flex:1;height:1px;background:#bbb}
+.page-title{font-size:22px;font-weight:600;margin-bottom:6px}
+.page-subtitle{font-size:13px;color:#555;margin-bottom:24px;max-width:520px;line-height:1.6}
+.cta-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:12px}
+.cta-banner-text{font-size:13px}.cta-banner-btn{font-size:12px;padding:6px 13px;border:1px solid #fff;border-radius:3px;background:transparent;color:#fff;white-space:nowrap;flex-shrink:0;cursor:pointer}
+.section{padding-top:12px;margin-bottom:48px}
+.section-anchor{display:block;height:1px;margin-top:-12px;visibility:hidden}
+.section-heading{font-size:18px;font-weight:600;padding-bottom:10px;border-bottom:2px solid #111;margin-bottom:20px}
+.subsection-heading{font-size:13px;font-weight:600;margin:18px 0 7px;border-left:3px solid #111;padding-left:8px}
+.body-text{font-size:13px;color:#333;margin-bottom:10px;line-height:1.65}
+.req-list{list-style:none;margin:0 0 14px;padding:0}
+.req-list li{font-size:13px;padding:5px 0 5px 16px;border-bottom:1px solid #f0f0f0;position:relative;color:#222}
+.req-list li:last-child{border-bottom:none}
+.req-list li::before{content:"—";position:absolute;left:0;color:#aaa;font-size:11px;top:7px}
+.req-list li strong{color:#111}
+.note-box{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.alert-box{background:#fffbf0;border:1px solid #d4a800;border-left:3px solid #d4a800;border-radius:3px;padding:10px 12px;font-size:12px;color:#444;margin:12px 0 16px}
+.scope-banner{background:#111;color:#fff;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;line-height:1.6}
+.scope-banner strong{display:block;margin-bottom:3px;font-size:13px}
+.elig-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0 16px}
+.elig-table th{background:#111;color:#fff;padding:7px 10px;text-align:left;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+.elig-table td{padding:7px 10px;border-bottom:1px solid #e5e5e5;vertical-align:top}
+.elig-table tr:nth-child(even) td{background:#f9f9f9}
+.dist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.dist-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.dist-code{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#555;margin-bottom:2px}
+.dist-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.dist-desc{font-size:11px;color:#555;line-height:1.4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.col-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px}
+.col-card:hover{border-color:#111}
+.col-card-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.col-card-desc{font-size:11px;color:#555;line-height:1.5}
+.step-list{margin:10px 0 16px}
+.step-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.step-item:last-child{border-bottom:none}
+.step-num{width:22px;height:22px;background:#111;color:#fff;border-radius:50%;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-title{font-size:13px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:12px;color:#555}
+.timeline-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.timeline-row:last-child{border-bottom:none}
+.timeline-label,.timeline-year{font-size:11px;font-weight:700;text-transform:uppercase;background:#111;color:#fff;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.timeline-content{font-size:12px;color:#333;line-height:1.55}
+.faq-item{border-bottom:1px solid #f0f0f0;padding:10px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-size:13px;font-weight:600;color:#111;margin-bottom:4px;display:flex;align-items:flex-start;gap:6px}
+.faq-q::before{content:"Q";font-size:10px;background:#111;color:#fff;padding:1px 4px;border-radius:2px;flex-shrink:0;margin-top:2px}
+.faq-a{font-size:12px;color:#444;line-height:1.6;padding-left:20px}
+.cta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid #bbb}
+.cta-btn{font-size:12px;padding:6px 13px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#111;color:#fff;text-decoration:none}
+.cta-btn.secondary{background:#fff;color:#111}
+.section-divider{height:1px;background:#e5e5e5;margin:0 0 48px}
+.info-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.info-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.info-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:3px;letter-spacing:.04em}
+.info-val{font-size:13px;font-weight:600;color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+.contact-item{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.contact-label{font-size:10px;text-transform:uppercase;color:#555;margin-bottom:2px;letter-spacing:.04em}
+.contact-val{font-size:12px;color:#111}
+.form-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:11px 13px;margin-bottom:8px}
+.form-card:hover{border-color:#111}
+.form-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.form-meta{font-size:11px;color:#555;line-height:1.5}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.term-toggle{display:flex;gap:6px;margin-bottom:18px}
+.toggle-btn{font-size:12px;padding:7px 16px;border:1px solid #111;border-radius:3px;cursor:pointer;background:#fff;color:#111}
+.toggle-btn.active{background:#111;color:#fff}
+.phase-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#777;background:#f0f0f0;padding:3px 8px;display:inline-block;border-radius:2px;margin:14px 0 6px}
+.term-block{display:none}
+.term-block.active{display:block}
+.right-col{padding:28px 14px 40px 14px;border-left:1px solid #bbb}
+.right-sticky{position:sticky;top:20px}
+.right-label{font-size:10px;text-transform:uppercase;color:#555;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #bbb}
+.right-link{display:block;font-size:11px;color:#555;padding:5px 8px;border-left:2px solid transparent;margin-bottom:1px;cursor:pointer;line-height:1.4;text-decoration:none}
+.right-link:hover{color:#111;border-left-color:#bbb}
+.right-link.active{color:#111;border-left-color:#111;font-weight:500;background:#f5f5f5}
+.tag{display:inline-block;font-size:10px;text-transform:uppercase;background:#fff;color:#111;border:1px solid #111;padding:2px 6px;border-radius:2px;letter-spacing:.04em;margin:2px 2px 2px 0}
+.subject-card{background:#fff;border:1px solid #bbb;border-radius:3px;padding:12px 14px;margin-bottom:10px}
+.subject-card:hover{border-color:#111}
+.subject-name{font-size:13px;font-weight:700;margin-bottom:4px;color:#111}
+.subject-exam{font-size:12px;color:#555;margin-bottom:6px}
+.subject-links{font-size:11px;color:#555}
+.subject-links a{color:#111;text-decoration:underline;margin-right:10px}
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.resource-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:9px 11px}
+.resource-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.resource-desc{font-size:11px;color:#555;line-height:1.4}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0}
+.cat-card{background:#f5f5f5;border:1px solid #bbb;border-radius:3px;padding:10px 12px}
+.cat-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.cat-desc{font-size:11px;color:#555;line-height:1.5}
+.filter-bar{display:flex;gap:8px;margin-bottom:10px;align-items:center}
+.filter-input{flex:1;font-size:12px;padding:7px 10px;border:1px solid #bbb;border-radius:3px;font-family:inherit}
+.filter-count{font-size:11px;color:#777;white-space:nowrap}
+.table-scroll{max-height:420px;overflow-y:auto;border:1px solid #e5e5e5;border-radius:3px}
+.table-scroll table{margin:0}
+.table-scroll thead th{position:sticky;top:0}
+.activity-type{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#555;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.info-banner{background:#f5f5f5;border:1px solid #bbb;border-left:3px solid #111;border-radius:3px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#333}
+.info-banner strong{display:block;margin-bottom:2px;font-size:13px;color:#111}
+</style></head><body>
+<div class="topbar">
+  <div class="topbar-brand">Cornell University · College of Arts &amp; Sciences</div>
+  <div class="topbar-right">as.cornell.edu</div>
+</div>
+<div class="sitenav">
+  <div class="snav-item">Admissions</div>
+  <div class="snav-item active">Student Services</div>
+  <div class="snav-item">Research &amp; Scholarship</div>
+  <div class="snav-item">Public Engagement</div>
+  <div class="snav-item">The College</div>
+</div>
+<div class="layout">
+  <div class="left-col"><div class="left-sticky">
+    <a class="left-label-link" href="00_student_services.html">Student Services</a>
+    <a class="left-group-link" href="00_advising.html">Academic Advising</a>
+    <a class="left-link" href="01_orientation.html">New Student Orientation</a>
+    <a class="left-link" href="02_ap_ib_credits.html">AP, IB &amp; A-Level Credits</a>
+    <a class="left-link" href="03_choosing_major_minor.html">Choosing a Major / Minor</a>
+    <a class="left-link" href="04_degree_requirements.html">Degree Requirements</a>
+    <a class="left-link" href="05_placement_exams.html">Placement Exams</a>
+    <a class="left-link active" href="06_graduation.html">Graduation</a>
+    <a class="left-link" href="07_pre_health.html">Pre-Health Resources</a>
+    <a class="left-link" href="08_study_abroad.html">Study Abroad</a>
+    <a class="left-group-link" style="margin-top:14px" href="registrar_00_landing.html">Registrar Services</a>
+    <a class="left-link" href="registrar_01_course_enrollment.html">Course Enrollment</a>
+    <a class="left-link" href="registrar_02_courses_dont_count.html">Courses That Won't Count</a>
+    <a class="left-link" href="registrar_03_academic_policies.html">Academic Policies</a>
+    <a class="left-link" href="registrar_04_petitions.html">Petitions to Policies</a>
+    <a class="left-link" href="registrar_05_transferring_credits.html">Transferring Credits</a>
+    <a class="left-link" href="registrar_06_leave_withdrawal.html">Leave &amp; Withdrawal</a>
+    <a class="left-link" href="registrar_07_important_dates.html">Important Dates</a>
+    <a class="left-link" href="registrar_08_classroom_scheduling.html">Classroom Scheduling</a>
+  </div></div>
+
+  <div class="main-col" id="mainCol">
+<div class="eyebrow"><span class="eyebrow-label">Academic Advising</span><div class="eyebrow-rule"></div></div>
+    <h1 class="page-title">Graduation</h1>
+    <p class="page-subtitle">Everything you need to apply to graduate, understand honors, and get your diploma.</p>
+    <div class="cta-banner">
+      <div class="cta-banner-text">Questions about your graduation application? Contact the A&amp;S Registrar's Office.</div>
+      <span class="cta-banner-btn">Schedule an Appointment</span>
+    </div>
+
+    <!-- APPLYING -->
+    <div class="section" id="sec-applying"><span class="section-anchor" id="applying"></span>
+      <h2 class="section-heading">Applying to Graduate</h2>
+      <p class="body-text">Applications are submitted during your <strong>penultimate semester</strong> (the semester before your final one). Spring graduates apply in the preceding fall.</p>
+
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Submit Part I — College Requirements</div><div class="step-desc">Complete the online form via data.arts. Includes your DUST report and a term-by-term course/credit chart. You'll answer questions about fulfillment of each college requirement. You'll receive an email confirmation.</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Meet with your faculty advisor — Part II (Major Requirements)</div><div class="step-desc">Your advisor holds the link to Part II and will complete it with you. If you have multiple majors, you must meet with each major advisor and complete a Part II for each. Bring transcripts for any non-Cornell coursework (transfer credit, study abroad).</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Confirm and follow up</div><div class="step-desc">After submitting, monitor your student record and contact the A&amp;S Registrar's Office (as-studentservices@cornell.edu / 607-255-5004) with any issues.</div></div></div>
+      </div>
+
+      <div class="note-box"><strong>Returning after a long absence?</strong> If you've been withdrawn or away for more than five years, email as-studentservices@cornell.edu to determine whether a return is possible.</div>
+      <div class="cta-row"><span class="cta-btn">Part I — Application to Graduate</span><span class="cta-btn secondary">Log In to DUST</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- EARLY -->
+    <div class="section" id="sec-early"><span class="section-anchor" id="early"></span>
+      <h2 class="section-heading">Graduating Early</h2>
+      <ul class="req-list">
+        <li>Possible if you can complete all graduation requirements in <strong>fewer than 8 semesters</strong></li>
+        <li>You must still satisfy the <strong>college residency requirement</strong></li>
+        <li>Earliest you can officially request early graduation: <strong>immediately after pre-enrollment</strong> for your anticipated final semester</li>
+        <li>Pre-enroll in your final required courses first, then notify A&amp;S Registrar at as-studentservices@cornell.edu with subject line: Early Graduation</li>
+        <li>After your graduation date is updated, complete <strong>Part I</strong> and have your advisor complete <strong>Part II</strong></li>
+      </ul>
+      <div class="cta-row"><span class="cta-btn secondary">Email Registrar — Early Graduation</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- LATE -->
+    <div class="section" id="sec-late"><span class="section-anchor" id="late"></span>
+      <h2 class="section-heading">Graduating Late (9th+ Term)</h2>
+      <p class="body-text">The BA is expected to be completed in 8 terms. Additional terms are only approved for <strong>emergent circumstances beyond the student's control</strong> — not for adding a major or minor.</p>
+
+      <div class="subsection-heading">Process for Requesting a 9th Term</div>
+      <div class="step-list">
+        <div class="step-item"><div class="step-num">1</div><div><div class="step-title">Faculty advisor updates Part II</div><div class="step-desc">Must detail remaining major requirements</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div><div class="step-title">Submit a study plan to your college advisor</div><div class="step-desc">List the specific courses that will meet degree requirements for one major</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div><div class="step-title">Email the A&amp;S Registrar's Office</div><div class="step-desc">Official request for 9th term — as-studentservices@cornell.edu</div></div></div>
+      </div>
+
+      <div class="subsection-heading">9th &amp; 10th Term Conditions</div>
+      <table class="elig-table">
+        <thead><tr><th></th><th>9th Term</th><th>10th Term</th></tr></thead>
+        <tbody>
+          <tr><td>Enrollment cap</td><td>18 credits</td><td>Only courses/credits required for one major</td></tr>
+          <tr><td>Tuition</td><td>May prorate if enrolling ≤9 credits</td><td>Must prorate tuition</td></tr>
+          <tr><td>Additional enrollments</td><td>Limited to required courses</td><td>Not allowed</td></tr>
+        </tbody>
+      </table>
+      <div class="note-box">Requests to add an additional major or minor will <strong>not</strong> be approved as a reason for a 9th or 10th term.</div>
+    </div><div class="section-divider"></div>
+
+    <!-- HONORS -->
+    <div class="section" id="sec-honors"><span class="section-anchor" id="honors"></span>
+      <h2 class="section-heading">Honors</h2>
+      <div class="alert-box"><strong>Policy change effective December 2026:</strong> Cornell will institute a standardized Latin Honors system based solely on final cumulative undergraduate GPA. Existing college-specific honors systems will be discontinued at end of Summer 2026. A&amp;S majors will transition to "Honors in [X]" designations (e.g., Honors in Chemistry).</div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <div class="col-card-title">Bachelor of Arts with Honors (in a Major)</div>
+          <div class="col-card-desc">Almost all departments offer honors programs for exceptional major work and research. Requirements — including cum laude, magna cum laude, summa cum laude thresholds — are set by each department. Minors do not offer honors. Contact the DUS for your program.</div>
+        </div>
+        <div class="col-card">
+          <div class="col-card-title">Bachelor of Arts with Distinction in All Subjects</div>
+          <div class="col-card-desc">Requires: 60+ credits at Cornell; GPA in top 30% of class after 7th semester; no grade below C–; no failing grades; no frozen Incompletes; good academic standing for last 4 semesters.</div>
+        </div>
+      </div>
+      <div class="subsection-heading">Upcoming Latin Honors Scale (December 2026+)</div>
+      <table class="elig-table">
+        <thead><tr><th>Latin Honor</th><th>GPA Percentile (within college)</th></tr></thead>
+        <tbody>
+          <tr><td>Summa Cum Laude</td><td>Top 5%</td></tr>
+          <tr><td>Magna Cum Laude</td><td>Next 10% (top 6–15%)</td></tr>
+          <tr><td>Cum Laude</td><td>Next 15% (top 16–30%)</td></tr>
+        </tbody>
+      </table>
+      <div class="cta-row"><span class="cta-btn secondary">Directors of Undergraduate Studies</span><span class="cta-btn secondary">Graduation &amp; Academic Honors (University Catalog)</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- DIPLOMAS -->
+    <div class="section" id="sec-diplomas"><span class="section-anchor" id="diplomas"></span>
+      <h2 class="section-heading">Diplomas</h2>
+      <p class="body-text">Information on diploma ordering, delivery, and name changes is managed by the Cornell University Registrar.</p>
+      <div class="cta-row"><span class="cta-btn secondary">Cornell Registrar — Diploma Information</span></div>
+    </div><div class="section-divider"></div>
+
+    <!-- TRACKING -->
+    <div class="section" id="sec-tracking"><span class="section-anchor" id="tracking"></span>
+      <h2 class="section-heading">Track Your Degree Requirements</h2>
+      <ul class="req-list">
+        <li><strong>DUST report</strong> tracks university and college distribution requirements — updated after each semester's grades post</li>
+        <li>Does <strong>not</strong> track major/minor requirements — contact your faculty advisor for those</li>
+      </ul>
+      <div class="cta-row"><span class="cta-btn">Log In to DUST</span><span class="cta-btn secondary">Schedule with Your Advising Dean</span></div>
+  </div>
+  </div>
+  <div class="right-col"><div class="right-sticky">
+    <div class="right-label">On this page</div>
+<a class="right-link" onclick="go('applying')">Applying to Graduate</a>
+    <a class="right-link" onclick="go('early')">Graduating Early</a>
+    <a class="right-link" onclick="go('late')">Graduating Late</a>
+    <a class="right-link" onclick="go('honors')">Honors</a>
+    <a class="right-link" onclick="go('diplomas')">Diplomas</a>
+    <a class="right-link" onclick="go('tracking')">Track Your Degree Requirements</a>
+  </div></div>
+</div>
+<script>
+var secs=['applying','early','late','honors','diplomas','tracking']
+function go(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});setActive(id)}
+function setActive(id){document.querySelectorAll('.right-link').forEach(function(l){l.classList.remove('active')});var t=document.querySelector('.right-link[onclick="go(\''+id+'\')"]');if(t)t.classList.add('active')}
+window.addEventListener('scroll',function(){var y=window.scrollY+80,c=secs[0];secs.forEach(function(s){var el=document.getElementById(s);if(el&&el.offsetTop<=y)c=s});setActive(c)})
+</script>
+</body></html>
